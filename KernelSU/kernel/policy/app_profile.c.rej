@@ -1,0 +1,11 @@
+--- kernel/policy/app_profile.c
++++ kernel/policy/app_profile.c
+@@ -105,8 +104,6 @@ int escape_with_root_profile(void)
+ {
+     int ret = 0;
+     struct cred *cred;
+-    struct task_struct *p = current;
+-    struct task_struct *t;
+     struct root_profile *profile = NULL;
+     struct user_struct *new_user;
+ 
