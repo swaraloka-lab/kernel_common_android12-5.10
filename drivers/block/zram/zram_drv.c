@@ -1980,6 +1980,7 @@ static int zram_add(void)
 	/* zram devices sort of resembles non-rotational disks */
 	blk_queue_flag_set(QUEUE_FLAG_NONROT, zram->disk->queue);
 	blk_queue_flag_clear(QUEUE_FLAG_ADD_RANDOM, zram->disk->queue);
+	blk_queue_flag_clear(QUEUE_FLAG_IO_STAT, zram->disk->queue);
 
 	/*
 	 * To ensure that we always get PAGE_SIZE aligned

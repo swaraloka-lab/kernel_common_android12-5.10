@@ -2126,6 +2126,8 @@ static int loop_add(struct loop_device **l, int i)
 
 	blk_queue_max_hw_sectors(lo->lo_queue, BLK_DEF_MAX_SECTORS);
 
+	blk_queue_flag_clear(QUEUE_FLAG_IO_STAT, lo->lo_queue);
+
 	/*
 	 * By default, we do buffer IO, so it doesn't make sense to enable
 	 * merge because the I/O submitted to backing file is handled page by
