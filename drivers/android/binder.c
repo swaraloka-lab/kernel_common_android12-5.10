@@ -137,15 +137,15 @@ module_param_call(stop_on_user_error, binder_set_stop_on_user_error,
 
 #define binder_debug(mask, x...) \
 	do { \
-		if (binder_debug_mask & mask) \
+		if (unlikely(binder_debug_mask & mask)) \
 			pr_info_ratelimited(x); \
 	} while (0)
 
 #define binder_user_error(x...) \
 	do { \
-		if (binder_debug_mask & BINDER_DEBUG_USER_ERROR) \
+		if (unlikely(binder_debug_mask & BINDER_DEBUG_USER_ERROR)) \
 			pr_info_ratelimited(x); \
-		if (binder_stop_on_user_error) \
+		if (unlikely(binder_stop_on_user_error)) \
 			binder_stop_on_user_error = 2; \
 	} while (0)
 
@@ -412,8 +412,8 @@ static void
 binder_enqueue_work_ilocked(struct binder_work *work,
 			   struct list_head *target_list)
 {
-	BUG_ON(target_list == NULL);
-	BUG_ON(work->entry.next && !list_empty(&work->entry));
+	WARN_ON(target_list == NULL);
+	WARN_ON(work->entry.next && !list_empty(&work->entry));
 	list_add_tail(&work->entry, target_list);
 }
 
