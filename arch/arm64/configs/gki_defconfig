@@ -1,4 +1,4 @@
-CONFIG_LOCALVERSION="-KagamiChihiro-v2.0-MillenniumTeam"
+CONFIG_LOCALVERSION="-Scalar-prjkt-v1.0"
 # CONFIG_LOCALVERSION_AUTO is not set
 CONFIG_AUDIT=y
 CONFIG_NO_HZ=y
